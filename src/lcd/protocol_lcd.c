@@ -25,14 +25,13 @@ unsigned char getPcsid(unsigned short reg_addr)
 	switch (reg_addr)
 	{
 	case 0x3008:
-	case 0x3005:
+	case 0x3005:	
 	case 0x3002:
-	case 0x1200:
-	case 0x1100:
+	case 0x1200:		
+	case 0x1100:			
 	{
 		pcsid = 1;
 	}
-
 	break;
 	case 0x3018:
 	case 0x3015:
@@ -85,13 +84,13 @@ int BakLcdFun03(int id_thread, unsigned char devid, unsigned short reg_addr, uns
 
 	if (reg_addr == 0x1246)
 	{
-		printf("功能码0x03，eum获取lcd[%d]下pcs数量\n", id_thread);
+
 		pdata = yx1246;
 		len = 2;
 	}
 	else if (reg_addr == 0x1240)
 	{
-		printf("功能码0x03，lcd[%d]整机遥信，数据长度=14 \n", id_thread);
+		printf("整机遥信功能码0x03，lcd[%d]整机遥信，数据长度=14 \n", id_thread);
 		pdata = yxData_ZJ_1240;
 		len = 14;
 	}
@@ -100,11 +99,11 @@ int BakLcdFun03(int id_thread, unsigned char devid, unsigned short reg_addr, uns
 		pcsid = getPcsid(reg_addr);
 		pdata = yxData_MK;
 		len = 30;
-		printf("功能码0x03，lcd[%d]，模块编号pcsid=%d 遥信数据长度=30 \n", id_thread, pcsid);
+		printf("模块遥信功能码0x03，lcd[%d]，模块编号pcsid=%d 遥信数据长度=30 \n", id_thread, pcsid);
 	}
 	else if (reg_addr == 0x1174)
 	{
-		printf("功能码0x03，lcd[%d]整机遥测，数据长度=30 \n", id_thread);
+		printf("整机遥测功能码0x03，lcd[%d]整机遥测，数据长度=30 \n", id_thread);
 		pdata = ycData_ZJ_1174;
 		len = 30;
 	}
@@ -113,7 +112,8 @@ int BakLcdFun03(int id_thread, unsigned char devid, unsigned short reg_addr, uns
 		pcsid = getPcsid(reg_addr);
 		pdata = ycData_MK;
 		len = 58;
-		printf("功能码0x03，lcd[%d]，模块编号pcsid=%d 遥测数据长度=58 \n", id_thread, pcsid);
+		printf("模块遥测功能码0x03，lcd[%d]，模块编号pcsid=%d 遥测数据长度=58 \n", id_thread, pcsid);
+
 	}
 
 	sendbuf[pos++] = num_frame / 256;
@@ -142,7 +142,7 @@ int BakLcdFun03(int id_thread, unsigned char devid, unsigned short reg_addr, uns
 	return 0;
 }
 
-int BakLcdFun10(int id_thread, unsigned char devid, unsigned short reg_addr, unsigned short num, unsigned short num_frame)
+int BakLcdFun10(int id_thread,unsigned char devid, unsigned short reg_addr, unsigned short num, unsigned short num_frame)
 {
 	// printf(" id_thread:%d  reg_addr:%#x  val:%#x\n",id_thread,reg_addr,val);
 
